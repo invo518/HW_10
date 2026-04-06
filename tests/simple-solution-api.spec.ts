@@ -20,7 +20,7 @@ test('get order with incorrect id should receive code 400', async ({ request }) 
   expect(statusCode). toBe(400)
 })
 test("get order with incorrect id should receive code 405", async ({ request }) => {
-  const response = await request.get(`${baseUrl} `)
+  const response = await request.get(`${baseUrl}`)
   const statusCode = response.status()
   console.log('Method not Allowed')
   expect(statusCode).toBe(405)
@@ -85,7 +85,7 @@ test('Successful update order with correct length api_key and correct id should 
 describe('Test endpoint Delete/test-orders/{id}',() => {
   const baseUrl = 'https://backend.tallinn-learning.ee/test-orders/'
 
-  test('Delete order with correct id should return 200', async ({ request }) => {
+  test('Delete order with correct id should return 204', async ({ request }) => {
     const requestHeaders = { api_key: '1234566745347856' };
     const response = await request.delete(`${baseUrl}1`, {headers: requestHeaders})
     const statusCode = response.status()
@@ -97,7 +97,7 @@ describe('Test endpoint Delete/test-orders/{id}',() => {
     const requestHeaders = { api_key: '1234' };
     const response = await request.delete(`${baseUrl}1`, {headers: requestHeaders})
     const statusCode = response.status()
-    console.log('Unauthorized', statusCode)
+    console.log('Bad request', statusCode)
     expect(statusCode).toBe(401)
 
      })
